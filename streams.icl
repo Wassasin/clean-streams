@@ -42,3 +42,7 @@ invert [s:s`] = [1.0/s:(invert [s:s`]) * s` * [-1.0/s]]
 pow :: [Real] Int -> [Real]
 pow s 0 = one
 pow s n = s * pow s (n-1)
+
+(shuffle) infixl 7 :: [Real] [Real] -> [Real]
+(shuffle) [s:s`] [t:t`] = [s*t:s` shuffle [t:t`] + [s:s`] shuffle t`]
+(shuffle) _ _ = []
